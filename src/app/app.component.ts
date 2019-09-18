@@ -21,6 +21,7 @@ interface todosType {
 export class AppComponent {
   public todos: todosType[] = todos;
   public filterTodos: todosType[] = todos;
+  public selected: string = 'All';
   public currentId: number = 0;
   public currentContent: string = '';
 
@@ -96,17 +97,20 @@ export class AppComponent {
   // 路由切换
   allTodos() {
     this.filterTodos = this.todos;
+    this.selected = 'All';
   }
 
   activeTodos() {
     this.filterTodos = this.todos.filter(item=>{
       return (!item.completed);
-    })
+    });
+    this.selected = 'Active';
   }
 
   completedTodos() {
     this.filterTodos = this.todos.filter(item=>{
       return (item.completed);
-    })
+    });
+    this.selected = 'Completed';
   }
 }

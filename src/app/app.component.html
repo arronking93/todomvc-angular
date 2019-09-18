@@ -51,13 +51,13 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
       <li>
-        <a class="selected" href="#/" (click)="allTodos()">All</a>
+        <a [ngClass]="selected==='All'? 'selected': ''"  href="#/" (click)="allTodos()">All</a>
       </li>
       <li>
-        <a href="#/active" (click)="activeTodos()">Active</a>
+        <a href="#/active" (click)="activeTodos()" [ngClass]="selected==='Active'? 'selected': ''">Active</a>
       </li>
       <li>
-        <a href="#/completed" (click)="completedTodos()">Completed</a>
+        <a href="#/completed" (click)="completedTodos()" [ngClass]="selected==='Completed'? 'selected': ''">Completed</a>
       </li>
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
