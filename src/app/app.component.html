@@ -6,7 +6,7 @@
       placeholder="What needs to be done?"
       autofocus (keyup.enter)="addTodos($event)">
   </header>
-  <ng-template [ngIf]="filterTodos.length">
+  <ng-template [ngIf]="todos.length">
     <!-- This section should be hidden by default and shown when there are todos -->
   <section class="main">
     <input
@@ -40,7 +40,7 @@
           [value]="todo.content"
           (blur)="blurSave($event, todo)"
           (keyup.enter)="editTodo($event, todo.id)"
-          (keyup)="cancelEdit($event, todo)">
+          (keyup)="cancelEdit($event)">
       </li>
     </ul>
   </section>
@@ -51,13 +51,13 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
       <li>
-        <a [ngClass]="selected==='All'? 'selected': ''"  href="#/" (click)="allTodos()">All</a>
+        <a href="#/" [ngClass]="{selected: selected === 'All'}">All</a>
       </li>
       <li>
-        <a href="#/active" (click)="activeTodos()" [ngClass]="selected==='Active'? 'selected': ''">Active</a>
+        <a href="#/active" [ngClass]="{selected: selected === 'Active'}">Active</a>
       </li>
       <li>
-        <a href="#/completed" (click)="completedTodos()" [ngClass]="selected==='Completed'? 'selected': ''">Completed</a>
+        <a href="#/completed" [ngClass]="{selected: selected === 'Completed'}">Completed</a>
       </li>
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
