@@ -20,6 +20,7 @@ interface todosType {
 
 export class AppComponent {
   public todos: todosType[] = todos;
+  public filterTodos: todosType[] = todos;
   public currentId: number = 0;
   public currentContent: string = '';
 
@@ -90,5 +91,22 @@ export class AppComponent {
 
   clearDone() {
     this.todos = this.todos.filter(item=>!item.completed);
+  }
+
+  // 路由切换
+  allTodos() {
+    this.filterTodos = this.todos;
+  }
+
+  activeTodos() {
+    this.filterTodos = this.todos.filter(item=>{
+      return (!item.completed);
+    })
+  }
+
+  completedTodos() {
+    this.filterTodos = this.todos.filter(item=>{
+      return (item.completed);
+    })
   }
 }
